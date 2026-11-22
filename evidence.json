@@ -1,0 +1,240 @@
+{
+  "checked_at": "2026-11-22T15:26:46.334481+00:00",
+  "services": {
+    "eth": {
+      "status": "ok",
+      "chain_id": "0x1",
+      "chain_id_expected": "0x1",
+      "chain_id_match": true,
+      "block_height": "0x193ec79",
+      "block_height_int": 26471545,
+      "chain_latency_ms": 692.55,
+      "block_latency_ms": 669.42,
+      "latency_ms": 692.55,
+      "error_case": {
+        "method": "eth_nope",
+        "code": -32601,
+        "message": "Method not found",
+        "received_error": true
+      }
+    },
+    "base": {
+      "status": "ok",
+      "chain_id": "0x2105",
+      "chain_id_expected": "0x2105",
+      "chain_id_match": true,
+      "block_height": "0x3a08f68",
+      "block_height_int": 60854120,
+      "chain_latency_ms": 657.43,
+      "block_latency_ms": 702.15,
+      "latency_ms": 657.43,
+      "error_case": {
+        "method": "eth_nope",
+        "code": -32601,
+        "message": "Method not found",
+        "received_error": true
+      }
+    },
+    "poly": {
+      "status": "ok",
+      "chain_id": "0x89",
+      "chain_id_expected": "0x89",
+      "chain_id_match": true,
+      "block_height": "0x5d3dbf8",
+      "block_height_int": 97770488,
+      "chain_latency_ms": 657.74,
+      "block_latency_ms": 670.66,
+      "latency_ms": 657.74,
+      "error_case": {
+        "method": "eth_nope",
+        "code": -32601,
+        "message": "the method eth_nope does not exist/is not available",
+        "received_error": true
+      }
+    },
+    "arb-one": {
+      "status": "ok",
+      "chain_id": "0xa4b1",
+      "chain_id_expected": "0xa4b1",
+      "chain_id_match": true,
+      "block_height": "0x1f628b54",
+      "block_height_int": 526551892,
+      "chain_latency_ms": 661.31,
+      "block_latency_ms": 692.58,
+      "latency_ms": 661.31,
+      "error_case": {
+        "method": "eth_nope",
+        "code": -32601,
+        "message": "the method eth_nope does not exist/is not available",
+        "received_error": true
+      }
+    },
+    "op": {
+      "status": "ok",
+      "chain_id": "0xa",
+      "chain_id_expected": "0xa",
+      "chain_id_match": true,
+      "block_height": "0x98797fe",
+      "block_height_int": 159881214,
+      "chain_latency_ms": 676.79,
+      "block_latency_ms": 664.44,
+      "latency_ms": 676.79,
+      "error_case": {
+        "method": "eth_nope",
+        "code": -32601,
+        "message": "Method not found",
+        "received_error": true
+      }
+    }
+  },
+  "evidence": {
+    "checks_per_service": 5,
+    "services": {
+      "arb-one": {
+        "checks": 5,
+        "successful_checks": 5,
+        "failed_checks": 0,
+        "chain_ids": [
+          "0xa4b1"
+        ],
+        "chain_id_stable": true,
+        "chain_id_expected": "0xa4b1",
+        "chain_id_match_all": true,
+        "block_first": 526551742,
+        "block_last": 526551892,
+        "block_min": 526551742,
+        "block_max": 526551892,
+        "block_advanced": true,
+        "block_monotonic": true,
+        "min_latency_ms": 661.24,
+        "mean_latency_ms": 690.92,
+        "max_latency_ms": 770.45,
+        "error_case_method": "eth_nope",
+        "error_case_received": 5,
+        "error_case_codes": [
+          -32601
+        ],
+        "error_case_messages": [
+          "the method eth_nope does not exist/is not available"
+        ],
+        "error_case_ok": true
+      },
+      "base": {
+        "checks": 5,
+        "successful_checks": 5,
+        "failed_checks": 0,
+        "chain_ids": [
+          "0x2105"
+        ],
+        "chain_id_stable": true,
+        "chain_id_expected": "0x2105",
+        "chain_id_match_all": true,
+        "block_first": 60853874,
+        "block_last": 60854120,
+        "block_min": 60853874,
+        "block_max": 60854120,
+        "block_advanced": true,
+        "block_monotonic": true,
+        "min_latency_ms": 651.51,
+        "mean_latency_ms": 664.98,
+        "max_latency_ms": 696.38,
+        "error_case_method": "eth_nope",
+        "error_case_received": 5,
+        "error_case_codes": [
+          -32601
+        ],
+        "error_case_messages": [
+          "Method not found"
+        ],
+        "error_case_ok": true
+      },
+      "eth": {
+        "checks": 5,
+        "successful_checks": 5,
+        "failed_checks": 0,
+        "chain_ids": [
+          "0x1"
+        ],
+        "chain_id_stable": true,
+        "chain_id_expected": "0x1",
+        "chain_id_match_all": true,
+        "block_first": 26471540,
+        "block_last": 26471545,
+        "block_min": 26471540,
+        "block_max": 26471545,
+        "block_advanced": true,
+        "block_monotonic": true,
+        "min_latency_ms": 652.69,
+        "mean_latency_ms": 693.65,
+        "max_latency_ms": 712.91,
+        "error_case_method": "eth_nope",
+        "error_case_received": 5,
+        "error_case_codes": [
+          -32601
+        ],
+        "error_case_messages": [
+          "Method not found"
+        ],
+        "error_case_ok": true
+      },
+      "op": {
+        "checks": 5,
+        "successful_checks": 5,
+        "failed_checks": 0,
+        "chain_ids": [
+          "0xa"
+        ],
+        "chain_id_stable": true,
+        "chain_id_expected": "0xa",
+        "chain_id_match_all": true,
+        "block_first": 159881189,
+        "block_last": 159881214,
+        "block_min": 159881189,
+        "block_max": 159881214,
+        "block_advanced": true,
+        "block_monotonic": true,
+        "min_latency_ms": 653.56,
+        "mean_latency_ms": 694.21,
+        "max_latency_ms": 737.89,
+        "error_case_method": "eth_nope",
+        "error_case_received": 5,
+        "error_case_codes": [
+          -32601
+        ],
+        "error_case_messages": [
+          "Method not found"
+        ],
+        "error_case_ok": true
+      },
+      "poly": {
+        "checks": 5,
+        "successful_checks": 5,
+        "failed_checks": 0,
+        "chain_ids": [
+          "0x89"
+        ],
+        "chain_id_stable": true,
+        "chain_id_expected": "0x89",
+        "chain_id_match_all": true,
+        "block_first": 97770456,
+        "block_last": 97770488,
+        "block_min": 97770456,
+        "block_max": 97770488,
+        "block_advanced": true,
+        "block_monotonic": true,
+        "min_latency_ms": 649.37,
+        "mean_latency_ms": 675.95,
+        "max_latency_ms": 696.84,
+        "error_case_method": "eth_nope",
+        "error_case_received": 5,
+        "error_case_codes": [
+          -32601
+        ],
+        "error_case_messages": [
+          "the method eth_nope does not exist/is not available"
+        ],
+        "error_case_ok": true
+      }
+    }
+  }
+}

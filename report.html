@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pocket RPC Health Dashboard</title><style>
+:root{--primary:#0018ff;--bg:#f6f4ef;--card:#fff;--ink:#0a0a0a;--ink-2:#555;--muted:#737373;--border:#e5e5e5;--blue:#0018ff;--blue-soft:#0018ff14;--green:#15803d;--green-bg:#f0fdf4;--red:#dc2626;--red-bg:#fef2f2;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;margin:0;font-size:16px;line-height:1.55}
+code,.mono{font-family:var(--mono)}
+a{color:inherit}
+.blue{color:var(--blue)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.topbar{padding:20px 0 0}
+.brand-row{display:flex;align-items:center;gap:10px}
+.brand-mark{background:var(--primary);color:#fff;border-radius:8px;display:flex;justify-content:center;align-items:center;width:30px;height:30px;font-size:17px;font-weight:800}
+.brand{font-size:18px;font-weight:700;letter-spacing:-.02em}
+.hero{background-image:radial-gradient(#0018ff14 1px,#0000 1px);background-size:22px 22px;padding:64px 0 48px}
+.hero h1{letter-spacing:-.03em;margin:0 0 16px;font-size:68px;font-weight:800;line-height:1.02;max-width:720px}
+.hero .lede{color:var(--muted);margin:0;font-size:18px;max-width:620px}
+main{padding-bottom:72px}
+.verdict{background:var(--card);border:1px solid var(--border);padding:32px;position:relative;box-shadow:0 1px 2px #0a0a0a0d;margin-bottom:16px}
+.corner{border:0 solid var(--primary);width:8px;height:8px;position:absolute}
+.corner.tl{border-top-width:2px;border-left-width:2px;top:-1px;left:-1px}
+.corner.tr{border-top-width:2px;border-right-width:2px;top:-1px;right:-1px}
+.corner.bl{border-bottom-width:2px;border-left-width:2px;bottom:-1px;left:-1px}
+.corner.br{border-bottom-width:2px;border-right-width:2px;bottom:-1px;right:-1px}
+.verdict-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.verdict h2{letter-spacing:-.02em;margin:0;font-size:clamp(26px,3.2vw,36px);font-weight:800}
+.verdict p{color:var(--ink-2);max-width:680px;margin:10px 0 0;font-size:15px}
+.verdict .state{letter-spacing:.08em;text-transform:uppercase;background:var(--blue);color:#fff;white-space:nowrap;border-radius:999px;flex:none;padding:5px 10px;font-size:11px;font-weight:800}
+.verdict .state.attention{background:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--border);padding:20px;position:relative;box-shadow:0 1px 2px #0a0a0a0d}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.letter{background:var(--primary);color:#fff;display:flex;justify-content:center;align-items:center;width:36px;height:36px;font-size:17px;font-weight:800}
+.pill{letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--blue);color:var(--blue);white-space:nowrap;background:0 0;border-radius:999px;padding:3px 8px;font-size:10px;font-weight:700}
+.pill.ok{border-color:var(--green);color:var(--green);background:var(--green-bg)}
+.pill.fail{border-color:var(--red);color:var(--red);background:var(--red-bg)}
+.card h3{margin:14px 0 12px;font-size:17px;font-weight:800}
+.fact{margin-bottom:12px}
+.fact:last-child{margin-bottom:0}
+.fact .k{color:var(--muted);margin-bottom:2px;font-size:12px;font-weight:600}
+.fact .v{font-size:14px;line-height:1.6;overflow-wrap:anywhere}
+.fact .v code{color:var(--blue)}
+.fact .v strong{font-weight:700}
+.card-error{color:var(--red);margin:12px 0 0;font-size:13px}
+.card-error code{color:var(--red)}
+.panel{background:var(--card);border:1px solid var(--border);padding:22px 26px;position:relative;box-shadow:0 1px 2px #0a0a0a0d}
+.panel h2{letter-spacing:-.02em;margin:0 0 8px;font-size:24px;font-weight:800}
+.panel .sub{color:var(--muted);margin:0 0 12px;font-size:14px}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:760px}
+th{color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-size:12px;font-weight:600;text-align:left;padding:10px 12px;border-bottom:1px solid var(--border)}
+td{padding:12px;border-bottom:1px solid var(--border);font-size:14px;vertical-align:top;line-height:1.5}
+tr:last-child td{border-bottom:none}
+td code{color:var(--blue)}
+.site-footer{background:var(--blue);color:#fff;padding:48px 24px 32px}
+.site-footer p{margin:0 0 8px;font-size:14px;line-height:1.6}
+.site-footer p:last-child{margin-bottom:0}
+.site-footer a{color:#fff;text-decoration:underline}
+.site-footer code{color:#fff}
+@media (width<=860px){.hero h1{font-size:40px}.grid{grid-template-columns:repeat(2,1fr)}.verdict{padding:24px}}
+@media (width<=520px){.grid{grid-template-columns:1fr}.panel{padding:18px}.verdict-top{flex-direction:column}}
+</style></head><body>
+<header class="topbar"><div class="wrap"><div class="brand-row"><span class="brand-mark">P</span><span class="brand">Pocket RPC Health Dashboard</span></div></div></header>
+<section class="hero"><div class="wrap"><h1>Pocket RPC health, <span class="blue">checked live.</span></h1>
+<p class="lede">Five chains, four checks each, straight through Pocket's public RPC endpoints. No wallet, no API key, no POKT, no paid relay.</p></div></section>
+<main class="wrap">
+<section class="verdict"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+<div class="verdict-top"><h2>5 of 5 services ok</h2><span class="state">ALL OK</span></div>
+<p>Live checks through Pocket public RPC service endpoints. Checked at: 2026-11-22T15:26:46.334481+00:00</p>
+<p>Each round checks chain identity, latest block height, response latency, and the error case, five rounds per service.</p>
+</section>
+<section class="grid"><article class="card"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="card-top"><span class="letter">E</span><span class="pill ok">OK</span></div><h3>eth</h3><div class="fact"><div class="k">Chain ID</div><div class="v"><code>0x1</code> matches expected <code>0x1</code></div></div><div class="fact"><div class="k">Latest block</div><div class="v mono"><code>0x193ec79</code> (26,471,545)</div></div><div class="fact"><div class="k">Latency</div><div class="v">chain <strong>692.55 ms</strong>, block <strong>669.42 ms</strong></div></div><div class="fact"><div class="k">Error case</div><div class="v"><code>eth_nope</code> returned RPC error <code>-32601</code>: Method not found</div></div></article><article class="card"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="card-top"><span class="letter">B</span><span class="pill ok">OK</span></div><h3>base</h3><div class="fact"><div class="k">Chain ID</div><div class="v"><code>0x2105</code> matches expected <code>0x2105</code></div></div><div class="fact"><div class="k">Latest block</div><div class="v mono"><code>0x3a08f68</code> (60,854,120)</div></div><div class="fact"><div class="k">Latency</div><div class="v">chain <strong>657.43 ms</strong>, block <strong>702.15 ms</strong></div></div><div class="fact"><div class="k">Error case</div><div class="v"><code>eth_nope</code> returned RPC error <code>-32601</code>: Method not found</div></div></article><article class="card"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="card-top"><span class="letter">P</span><span class="pill ok">OK</span></div><h3>poly</h3><div class="fact"><div class="k">Chain ID</div><div class="v"><code>0x89</code> matches expected <code>0x89</code></div></div><div class="fact"><div class="k">Latest block</div><div class="v mono"><code>0x5d3dbf8</code> (97,770,488)</div></div><div class="fact"><div class="k">Latency</div><div class="v">chain <strong>657.74 ms</strong>, block <strong>670.66 ms</strong></div></div><div class="fact"><div class="k">Error case</div><div class="v"><code>eth_nope</code> returned RPC error <code>-32601</code>: the method eth_nope does not exist/is not available</div></div></article><article class="card"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="card-top"><span class="letter">A</span><span class="pill ok">OK</span></div><h3>arb-one</h3><div class="fact"><div class="k">Chain ID</div><div class="v"><code>0xa4b1</code> matches expected <code>0xa4b1</code></div></div><div class="fact"><div class="k">Latest block</div><div class="v mono"><code>0x1f628b54</code> (526,551,892)</div></div><div class="fact"><div class="k">Latency</div><div class="v">chain <strong>661.31 ms</strong>, block <strong>692.58 ms</strong></div></div><div class="fact"><div class="k">Error case</div><div class="v"><code>eth_nope</code> returned RPC error <code>-32601</code>: the method eth_nope does not exist/is not available</div></div></article><article class="card"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="card-top"><span class="letter">O</span><span class="pill ok">OK</span></div><h3>op</h3><div class="fact"><div class="k">Chain ID</div><div class="v"><code>0xa</code> matches expected <code>0xa</code></div></div><div class="fact"><div class="k">Latest block</div><div class="v mono"><code>0x98797fe</code> (159,881,214)</div></div><div class="fact"><div class="k">Latency</div><div class="v">chain <strong>676.79 ms</strong>, block <strong>664.44 ms</strong></div></div><div class="fact"><div class="k">Error case</div><div class="v"><code>eth_nope</code> returned RPC error <code>-32601</code>: Method not found</div></div></article></section>
+<section class="panel"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><h2>Repeated-check evidence</h2><p class="sub">Five rounds per service. Chain ID must stay stable and match the documented ID, block height must not go backwards, and the unknown method must come back as an RPC error.</p><div class="table-wrap"><table><thead><tr><th>Service</th><th>Successful</th><th>Chain IDs</th><th>Chain stable</th><th>Chain match</th><th>Block height</th><th>Block advanced</th><th>Latency min / mean / max</th><th>Error case</th></tr></thead><tbody><tr><td><strong>arb-one</strong></td><td>5/5</td><td>0xa4b1</td><td>yes</td><td>yes</td><td>526,551,742 to 526,551,892</td><td>yes</td><td>661.24 / 690.92 / 770.45 ms</td><td>5/5 returned error -32601</td></tr><tr><td><strong>base</strong></td><td>5/5</td><td>0x2105</td><td>yes</td><td>yes</td><td>60,853,874 to 60,854,120</td><td>yes</td><td>651.51 / 664.98 / 696.38 ms</td><td>5/5 returned error -32601</td></tr><tr><td><strong>eth</strong></td><td>5/5</td><td>0x1</td><td>yes</td><td>yes</td><td>26,471,540 to 26,471,545</td><td>yes</td><td>652.69 / 693.65 / 712.91 ms</td><td>5/5 returned error -32601</td></tr><tr><td><strong>op</strong></td><td>5/5</td><td>0xa</td><td>yes</td><td>yes</td><td>159,881,189 to 159,881,214</td><td>yes</td><td>653.56 / 694.21 / 737.89 ms</td><td>5/5 returned error -32601</td></tr><tr><td><strong>poly</strong></td><td>5/5</td><td>0x89</td><td>yes</td><td>yes</td><td>97,770,456 to 97,770,488</td><td>yes</td><td>649.37 / 675.95 / 696.84 ms</td><td>5/5 returned error -32601</td></tr></tbody></table></div></section>
+</main>
+<footer class="site-footer"><div class="wrap">
+<p>Endpoints: Pocket public RPC, free and keyless. No wallet, API key, POKT, or paid relay. Checked: <code>https://eth.api.pocket.network</code>, <code>https://base.api.pocket.network</code>, <code>https://poly.api.pocket.network</code>, <code>https://arb-one.api.pocket.network</code>, <code>https://op.api.pocket.network</code></p>
+<p>Docs: <a href="https://docs.pocket.network/developers/supported-chains/">docs.pocket.network/developers/supported-chains</a> &middot; Repo: <a href="https://github.com/Jayanng/pocket-rpc-health-dashboard">github.com/Jayanng/pocket-rpc-health-dashboard</a> &middot; Live demo: <a href="https://pocket-rpc-health-dashboard.vercel.app/">pocket-rpc-health-dashboard.vercel.app</a></p>
+</div></footer>
+</body></html>
