@@ -56,7 +56,7 @@ Four checks per service per round, 5 rounds by default:
 
 ## Live demo
 
-- Dashboard: https://pocket-rpc-health-dashboard.vercel.app/
+- Dashboard: https://pocket-rpc-health.vercel.app/
 - Repo: https://github.com/Jayanng/pocket-rpc-health-dashboard
 - Demo video: `demo/pocket-demo-1min.mp4` (62 seconds, H.264 1280x800), script at `demo/script.md`.
 - Run it yourself: `python3 src/main.py --runs 5 --pause 2 --json --html report.html > evidence.json`

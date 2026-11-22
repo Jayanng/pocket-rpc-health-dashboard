@@ -61,7 +61,7 @@ browser-captured image of the generated dashboard.
 The generated dashboard from the latest fresh run, deployed as a
 static site:
 
-https://pocket-rpc-health-dashboard.vercel.app
+https://pocket-rpc-health.vercel.app
 
 A 1-minute demo video explaining the dashboard is in the repo at
 `demo/pocket-demo-1min.mp4` (62 seconds, H.264 1280x800), with the
