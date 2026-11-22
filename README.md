@@ -5,6 +5,12 @@ services and turns the results into a practical health and reliability
 report. No wallet, API key, POKT, staking, or paid relay is needed:
 it uses the Foundation's free, keyless public RPC.
 
+## Demo video
+
+[![Pocket RPC health dashboard](screenshots/report.png)](demo/pocket-demo-1min.mp4)
+
+[Watch the 1-minute demo video (62 seconds)](demo/pocket-demo-1min.mp4)
+
 ## What it checks
 
 For every service, each round runs four checks:
